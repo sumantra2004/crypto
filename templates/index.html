@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptographic System - RSA, AES, DES</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Cryptographic System</h1>
+            <p>Pure HTML, CSS, JavaScript Frontend with Flask Backend</p>
+            <p>Encrypt and decrypt text and files using RSA, AES, and DES algorithms</p>
+        </header>
+
+        <!-- Algorithm Information -->
+        <section class="algorithm-info">
+            <h2>Algorithm Information</h2>
+            <div class="info-grid">
+                <div class="info-card rsa">
+                    <h3>RSA</h3>
+                    <p><strong>Type:</strong> Asymmetric</p>
+                    <p><strong>Key Size:</strong> 2048 bits</p>
+                    <p><strong>Use Case:</strong> Small text encryption, key exchange</p>
+                    <p><strong>Security:</strong> High (for key exchange)</p>
+                    <p><strong>Limitation:</strong> ~200 characters max</p>
+                </div>
+                <div class="info-card aes">
+                    <h3>AES</h3>
+                    <p><strong>Type:</strong> Symmetric</p>
+                    <p><strong>Key Size:</strong> 128 bits</p>
+                    <p><strong>Use Case:</strong> Text and file encryption</p>
+                    <p><strong>Security:</strong> Very High</p>
+                    <p><strong>Key:</strong> sumantra12!</p>
+                </div>
+                <div class="info-card des">
+                    <h3>DES</h3>
+                    <p><strong>Type:</strong> Symmetric</p>
+                    <p><strong>Key Size:</strong> 64 bits</p>
+                    <p><strong>Use Case:</strong> Legacy systems, educational</p>
+                    <p><strong>Security:</strong> Low (deprecated)</p>
+                    <p><strong>Key:</strong> sumantra12!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Text Encryption Section -->
+        <section class="encryption-section">
+            <h2>📝 Text Encryption & Decryption</h2>
+            <div class="text-panel">
+                <div class="input-group">
+                    <label for="textInput">Enter Text:</label>
+                    <textarea id="textInput" placeholder="Enter your text here..." rows="4"></textarea>
+                </div>
+                
+                <div class="controls">
+                    <div class="algorithm-select">
+                        <label for="textAlgorithm">Algorithm:</label>
+                        <select id="textAlgorithm">
+                            <option value="AES">AES (Recommended)</option>
+                            <option value="DES">DES (Educational)</option>
+                            <option value="RSA">RSA (Small text only)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="buttons">
+                        <button id="encryptTextBtn" class="btn encrypt-btn">🔒 Encrypt</button>
+                        <button id="decryptTextBtn" class="btn decrypt-btn">🔓 Decrypt</button>
+                        <button id="clearTextBtn" class="btn clear-btn">🗑️ Clear</button>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="textOutput">Result:</label>
+                    <textarea id="textOutput" placeholder="Encrypted/Decrypted text will appear here..." rows="4" readonly></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- File Encryption Section -->
+        <section class="encryption-section">
+            <h2>📁 File Encryption & Decryption</h2>
+            <div class="file-panel">
+                <div class="file-upload">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">📁</div>
+                        <p>Drag & drop files here or click to browse</p>
+                        <p class="upload-hint">Supports: Images, Documents, Audio, Video, PDFs, etc.</p>
+                        <input type="file" id="fileInput" hidden>
+                    </div>
+                    
+                    <div class="file-info" id="fileInfo" style="display: none;">
+                        <div class="file-details">
+                            <span class="file-name" id="fileName"></span>
+                            <span class="file-size" id="fileSize"></span>
+                            <span class="file-type" id="fileType"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="controls">
+                    <div class="algorithm-select">
+                        <label for="fileAlgorithm">Algorithm:</label>
+                        <select id="fileAlgorithm">
+                            <option value="AES">AES (Recommended)</option>
+                            <option value="DES">DES (Educational)</option>
+                        </select>
+                        <small>Note: RSA not suitable for file encryption</small>
+                    </div>
+                    
+                    <div class="buttons">
+                        <button id="encryptFileBtn" class="btn encrypt-btn" disabled>🔒 Encrypt File</button>
+                        <button id="decryptFileBtn" class="btn decrypt-btn" disabled>🔓 Decrypt File</button>
+                        <button id="clearFileBtn" class="btn clear-btn">🗑️ Clear</button>
+                    </div>
+                </div>
+                
+                <div class="progress-bar" id="progressBar" style="display: none;">
+                    <div class="progress-fill" id="progressFill"></div>
+                    <span class="progress-text" id="progressText">Processing...</span>
+                </div>
+                
+                <div class="result-area" id="resultArea" style="display: none;">
+                    <div class="result-info">
+                        <span id="resultText"></span>
+                        <button id="downloadBtn" class="btn download-btn">⬇️ Download</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Stack Info -->
+        <section class="tech-info">
+            <h2>🛠️ Technology Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>Frontend</h4>
+                    <p>Pure HTML5, CSS3, Vanilla JavaScript</p>
+                    <p>No frameworks or libraries</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Backend</h4>
+                    <p>Python Flask</p>
+                    <p>PyCryptodome library</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Features</h4>
+                    <p>Drag & Drop, File Upload</p>
+                    <p>Real-time encryption/decryption</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Status Messages -->
+        <div id="statusMessage" class="status-message" style="display: none;"></div>
+    </div>
+
+    <!-- Pure JavaScript - No frameworks -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
